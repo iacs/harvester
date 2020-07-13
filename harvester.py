@@ -7,7 +7,7 @@
 #  \ \_\  \ \_\ \_\  \ \_____\  \ \_____\  \/\_____\
 #   \/_/   \/_/\/_/   \/_____/   \/_____/   \/_____/
 #
-# Harvester 1.0.0
+# Harvester 1.0.1
 # SN: 200627
 
 import os
@@ -41,6 +41,7 @@ def main():
     create_filelist(files)
     sync(sync_path, sync_log_path, sync_args)
     runcmd(arch_cmd)
+    runcmd(['rm', os.path.join(arch_path,'harvest.7z')])
     move('harvest.7z', arch_path)
 
 
