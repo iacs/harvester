@@ -1,8 +1,10 @@
 {
     "files": [],
-    "path_sync": "",
-    "path_arch": "",
-    "path_sync_log": "",
+    "paths": {
+        "sync": "",
+        "archive": "",
+        "sync_log": ""
+    },
     "args_sync": [],
     "cmd_arch": [
         "7z",

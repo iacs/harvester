@@ -7,7 +7,7 @@
 #  \ \_\  \ \_\ \_\  \ \_____\  \ \_____\  \/\_____\
 #   \/_/   \/_/\/_/   \/_____/   \/_____/   \/_____/
 #
-# Harvester 1.0.1
+# Harvester 1.0.2
 # SN: 200627
 
 import os
@@ -22,9 +22,9 @@ def main():
         files = options['files']
         sync_args = options['args_sync']
         arch_cmd = options['cmd_arch']
-        sync_path = options['path_sync']
-        arch_path = options['path_arch']
-        sync_log_path = options['path_sync_log']
+        sync_path = options.get('paths')['sync']
+        arch_path = options.get('paths')['archive']
+        sync_log_path = options.get('paths')['sync_log']
     except FileNotFoundError as err:
         try:
             shutil.copy('options_template.json', 'options.json')
@@ -61,7 +61,8 @@ def create_filelist(files_list):
 def sync(sync_path, log_path, args):
     cmd_base = [
         'rsync',
-        '-arvzh',
+        '-avzh',
+        '--ignore-existing',
         '--delete',
         '--files-from=filelist.txt',
         '/',
